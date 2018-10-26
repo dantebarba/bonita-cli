@@ -1,10 +1,16 @@
-FROM python:2-alpine
+FROM python:2.7
 LABEL MANTEINER "dantebarba@gmail.com"
 
 COPY . .
 
-RUN pip install --upgrade pip
+COPY entrypoint.sh /
 
-RUN pip install -e .[test]
+RUN pip install --upgrade pip==9.0.1
 
-ENTRYPOINT ["/entrypoint.sh"]
+RUN pip install -r requirements.txt
+
+RUN pip install requests==2.9.1
+
+RUN pip install -e .
+
+ENTRYPOINT []
